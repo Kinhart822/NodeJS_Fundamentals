@@ -1,13 +1,15 @@
 import express from 'express';      
 import configViewEngine from './configs/viewEngine';
+require('dotenv').config()
 
 const app = express()
-const port = 8080
+const port = process.env.PORT || 3000
+console.log(`Server is running on port ${port}`)
 
 configViewEngine(app)
 
 app.get('/', (req, res) => {
-  res.render('index.ejs')
+  res.render('index.ejs', { name: 'Eric & Hoi Dan IT' })
 })
 
 app.get('/about', (req, res) => {
