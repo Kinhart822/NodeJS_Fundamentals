@@ -5,7 +5,6 @@ let router = express.Router();
 
 const initWebRoute = (app) => {
     router.get('/', homeController.getHomePage);
-
     router.get('/about', (req, res) => {
         res.send('Hello World from ERIC & HOI DAN IT')
     })
