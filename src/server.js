@@ -9,6 +9,9 @@ const app = express()
 const port = process.env.PORT || 3000
 console.log(`Server is running on port ${port}`)
 
+app.use(express.urlencoded({ extended: true })) // Middleware to parse URL-encoded bodies
+app.use(express.json()) // Middleware to parse JSON bodies
+
 // Set up view engine
 configViewEngine(app)
 

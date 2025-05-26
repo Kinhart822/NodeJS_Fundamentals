@@ -17,6 +17,27 @@ let getHomePage = async (req, res) => {
     }
 };
 
+let getDetailsPage = async (req, res) => {
+    let userId = req.params.id;
+    let user = await pool.query("SELECT * FROM users WHERE id = $1", [userId]);
+
+    console.log("checking req params", user);
+    return res.send(JSON.stringify(user.rows[0]));
+}
+
+let createNewUser = async (req, res) => {
+    let { firstName, lastName, email, address } = req.body;
+
+    // Insert user into PostgreSQL
+    await pool.query(
+        "INSERT INTO users(first_name, last_name, email, address) VALUES ($1, $2, $3, $4)",
+        [firstName, lastName, email, address]
+    );
+    
+    // Redirect to home page
+    return res.redirect('/');
+}
+
 module.exports = {
-    getHomePage
+    getHomePage, getDetailsPage, createNewUser
 };
