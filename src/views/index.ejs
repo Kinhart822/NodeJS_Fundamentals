@@ -40,9 +40,17 @@
                             <%= user.last_name %>
                         </td>
                         <td>
-                            <a class="btn btn-detail" href="/details/user/<%= user.id %>" target="_blank">Details</a>
-                            <button class="btn btn-edit">Edit</button>
-                            <button class="btn btn-delete">Delete</button>
+                            <div class="action-buttons">
+                                <a class="btn btn-detail" href="/details/user/<%= user.id %>"
+                                    target="_blank">Details</a>
+                                <form action="/edit-user/<%= user.id %>" method="GET">
+                                    <button class="btn btn-edit">Edit</button>
+                                </form>
+                                <form action="/delete-user" method="POST">
+                                    <input type="hidden" name="userId" value="<%= user.id %>" />
+                                    <button class="btn btn-delete" type="submit">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     <% }) %>
