@@ -1,6 +1,7 @@
 import express from 'express';
 import configViewEngine from './configs/viewEngine';
 import initWebRoute from './route/web';
+import initAPIRoute from './route/api';
 
 // Load environment variables from .env file
 require('dotenv').config()
@@ -17,6 +18,9 @@ configViewEngine(app)
 
 // Initialize web routes
 initWebRoute(app)
+
+// Initialize API routes
+initAPIRoute(app)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
